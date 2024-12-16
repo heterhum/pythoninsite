@@ -16,7 +16,7 @@ const PORT = 6300
 // Importer la logique de la page d'accueil
 const genererPageAccueil = require('./pages/index-get.js')
 
-async function runPythonScript(scriptPath, args, callback) {
+function runPythonScript(scriptPath, args, callback) {
     const pythonProcess = spawn('python', [scriptPath].concat(args));
  
     let data = '';
@@ -59,11 +59,10 @@ app.post('/submit', async (req, res) => {
     const data = await req.body; // Les données envoyées par le client via fetch()
     console.log('Données reçues:', parseInt(data["value"])); // Affiche les données dans le serveur
 
-    let datae=runPythonScript('C:/Users/xoxar/Desktop/perso/code/site/pythonsite/server/calcul.py', [parseInt(data["value"])], (err, result) => {
+    runPythonScript('C:/Users/xoxar/Desktop/perso/code/site/pythonsite/server/calcul.py', [parseInt(data["value"])], (err, result) => {
         if (err) {
             console.log(err); }
         else {
-            console.log(datae)
             res.json({
                 message: 'Données reçues et traitées avec succès',
                 receivedData: result
