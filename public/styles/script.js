@@ -13,7 +13,7 @@ function numbers() {
         .then((response) => response.json()) // On attend une réponse au format JSON
         .then(data => {
           console.log('Réponse du serveur:', parseInt(data.receivedData)); //console du naviguateur
-          document.write(parseInt(data.receivedData)) //askip sa change la page, a changé
+          document.getElementsByClassName('uwu')[0].innerHTML = parseInt(data.receivedData);
         })
 }
 
